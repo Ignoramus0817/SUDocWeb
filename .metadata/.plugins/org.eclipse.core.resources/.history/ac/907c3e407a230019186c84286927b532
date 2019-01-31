@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	<h2>Login</h2>
+	{% for error in errors %}
+		<p style = "color: red;">
+			{{ error }}
+		</p>
+	{% endfor %}
+	
+ 	<form action = "" method = "post">
+ 		<p>学号:<input type = "text" name = "userID"></p>
+ 		<p>密码:<input type = "password" name = "passWord"></p>
+ 		<input type = "submit" name = "Login" value = "登录">
+ 		<input type = "button" name = "Cancel" value = "取消">
+ 	</form>
+</body>
+</html>

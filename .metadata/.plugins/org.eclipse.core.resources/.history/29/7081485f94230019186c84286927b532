@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thanks</title>
+</head>
+<body onload = "thanksToLogin">
+<script src = "{% static 'js/general.js' %}"></script>
+
+    <h2>Thanks for your registration on our site.</h2>
+    <p> A validation email has been sent to your address.</p>
+    <p> Please check the email and validate your identification.</p>
+    <p> If the website didn't jump back automatically, please click here.</p>
+</body>
+</html>

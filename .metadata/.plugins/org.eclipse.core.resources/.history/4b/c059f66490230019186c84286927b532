@@ -1,0 +1,11 @@
+function backToMain(){
+	window.location.href = '/';
+}
+
+function mainToLogin(){
+	window.location.href = '/login/';
+}
+
+function mainToRegister(){
+	window.location.href = '/register/';
+}
