@@ -11,12 +11,7 @@ SUDoc.settings|D:\IgnorazWork\SUDoc\SUDoc\SUDoc\settings.py
 SUDoc.urls|D:\IgnorazWork\SUDoc\SUDoc\SUDoc\urls.py
 SUDoc.view|D:\IgnorazWork\SUDoc\SUDoc\SUDoc\view.py
 SUDoc.wsgi|D:\IgnorazWork\SUDoc\SUDoc\SUDoc\wsgi.py
-Users.__init__|D:\IgnorazWork\SUDoc\SUDoc\Users\__init__.py
-Users.admin|D:\IgnorazWork\SUDoc\SUDoc\Users\admin.py
-Users.apps|D:\IgnorazWork\SUDoc\SUDoc\Users\apps.py
-Users.migrations.0001_initial|D:\IgnorazWork\SUDoc\SUDoc\Users\migrations\0001_initial.py
-Users.migrations.__init__|D:\IgnorazWork\SUDoc\SUDoc\Users\migrations\__init__.py
-Users.models|D:\IgnorazWork\SUDoc\SUDoc\Users\models.py
-Users.tests|D:\IgnorazWork\SUDoc\SUDoc\Users\tests.py
-Users.views|D:\IgnorazWork\SUDoc\SUDoc\Users\views.py
+Utils.__init__|D:\IgnorazWork\SUDoc\SUDoc\Utils\__init__.py
+Utils.emailSend|D:\IgnorazWork\SUDoc\SUDoc\Utils\emailSend.py
+Utils.tokenGen|D:\IgnorazWork\SUDoc\SUDoc\Utils\tokenGen.py
 manage|D:\IgnorazWork\SUDoc\SUDoc\manage.py

@@ -11,6 +11,15 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import socket
+from django.conf.global_settings import SESSION_COOKIE_AGE,\
+    AUTHENTICATION_BACKENDS
+
+# Set debug as true in developing environment
+if socket.gethostname() == 'Ignoramus0817':
+    DEBUG = TEMPLATE_DEBUG = True
+else:
+    DEBUG = TEMPLATE_DEBUG = False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +34,7 @@ SECRET_KEY = '&hqu#2ue%p7-j4=)w7p_l^-we_j-j=ubx9v3k6d4podg6+@(%e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['47.107.125.210', '172.17.55.234', '127.0.0.1']
 
 
 # Application definition
@@ -37,14 +46,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Users',
+    'Files',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
+    #     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -52,7 +61,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'SUDoc.urls'
 
-TDIR = os.path.join(os.path.dirname(__file__),'Templates/').replace('\\','/')
+TDIR = os.path.join(os.path.dirname(__file__), 'Templates/').replace('\\', '/')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -101,6 +110,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -126,4 +139,17 @@ STATICFILES_DIRS = (
 
 # uploaded files
 MEDIA_URL = '/documents/upload/'
-MEDIA_ROOT = os.path.join(BASE_DIR,"documents","upload")
+MEDIA_ROOT = os.path.join(BASE_DIR, "documents", "upload")
+
+# session settings
+SESSION_COOKIE_AGE = 86400
+
+#Default email configuration
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'carto_z@163.com'
+EMAIL_HOST_PASSWORD = 'she21445flh'
+EMAIL_USE_TLS = True
+SERVER_EMAIL = 'carto_z@163.com'
+DEFAULT_FROM_EMAIL = 'DocSys<carto_z@163.com>'
+

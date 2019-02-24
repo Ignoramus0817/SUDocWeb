@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thanks</title>
+</head>
+<body onload = "thanksToMain()">
+<script src = "{% static 'js/general.js' %}"></script>
+	{% if successFlag %}
+  	  <h2>Thanks for your registration on our site.</h2>
+  	  <h2>Now you can Log in to DocSys.</h2>
+  	{% else %}
+  	  <h2>激活链接失败或错误，请重新注册并接收邮件！</h2>
+  	{% endif %}
+</body>
+</html>

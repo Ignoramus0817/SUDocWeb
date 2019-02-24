@@ -7,10 +7,12 @@
 </head>
 <body onload = "thanksToMain()">
 <script src = "{% static 'js/general.js' %}"></script>
-
-    <h2>Thanks for your registration on our site.</h2>
-    <p> A validation email has been sent to your address.</p>
-    <p> Please check the email and validate your identification.</p>
-    <p> If the website didn't jump back automatically, please click <a href = "/">here</a>.</p>
+	{{ context }}
+	{% if successFlag %}
+  	  <h2>非常感谢您使用DocSys！</h2>
+  	  <h2>现在您可以登录网站了！</h2>
+  	{% else %}
+  	  <h2>激活链接失败或错误，请重新注册并接收邮件！</h2>
+  	{% endif %}
 </body>
 </html>

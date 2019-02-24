@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="check_password" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="check_password"/>
+			<item value="//&#x09;&#x09;&#x09;&#x09;&#x09;var alertMessage = &quot;&quot;;"/>
+			<item value="create"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+</section>

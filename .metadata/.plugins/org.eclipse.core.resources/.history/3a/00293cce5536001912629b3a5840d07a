@@ -1,0 +1,159 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+	.navbar-brand:hover{
+	    background-color: #808080 !important;
+	}
+	.btn:hover{
+		background-color: #00BFFF !important;
+	}
+	.uploadBtn:hover{
+		background-color: #00BFFF !important;
+	}
+	
+	.fileSelect {
+  		position: relative;
+	  	display: inline-block;
+  	  	background: #87CEEB;
+    	border: 1px solid #00BFFF;
+    	border-radius: 5px;
+    	padding: 4px 12px;
+    	overflow: hidden;
+    	color: #1E88C7;
+    	text-decoration: none;
+    	text-indent: 0;
+    	line-height: 20px;
+    	width: 105px; 
+    	height: 40px;
+	}
+	.fileSelect input {
+    	position: absolute;
+    	font-size: 100px;
+    	right: 0;
+    	top: 0;
+    	opacity: 0;
+	}
+	.fileSelect:hover {
+    	background: #AADFFD;
+    	border-color: #78C3F3;
+    	color: #004974;
+    	text-decoration: none;
+	}
+	
+</style>
+
+<script src = "{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src = "{% static 'js/general.js' %}"></script>
+<script src = "{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<link rel = "stylesheet" href = "{% static '/bootstrap/css/bootstrap.min.css' %}">
+<link rel = "stylesheet" href = "{% static '/bootstrap/css/bootstrap-theme.min.css' %}">
+<meta charset= "UTF-8">
+<title>SUDoc</title>
+</head>
+<body style = "background: #4F4F4F; color: #FFFFFF;">
+
+    
+	<nav class = "navbar navbar-default" style = "background: #3C3C3C; margin: 0; border: 0">
+    	<div class = "container">
+    		<div class = "navbar-header"> 
+    			{% if not loginFlag and not staffFlag %}<div style = "position: absolute; left:40px; top: 11px;font-size: 20px; color: #FFFFFF">Welcome, 游客</div>
+    			{% else %}<div style = "position: absolute; left:40px; top: 11px;font-size: 20px; color: #FFFFFF">Welcome</div>
+    			{% endif %}
+        		<div style = "position: absolute; right:40px"><a class = "navbar-brand" href= "#" id = "nav1" onclick = "browserBack()" style = "color: #FFFFFF">返回主页</a></div>
+        	<!--
+        		<div style = "position: absolute; left: 16vw"><a class = "navbar-brand" href= "#" id = "nav2" onclick = "mainResetClick()" style = "color: #FFFFFF">退出登录</a></div>
+        		<div style = "position: absolute; left: 23.5vw"><a class = "navbar-brand" href= "#" id = "nav3" style = "color: #FFFFFF">用户注册</a></div>
+    		-->
+    		</div>
+    	</div>
+	</nav>
+	
+	<div class ="jumbotron" style = "position: absolute; width: 1000px; height: 550px; left: 175px; top: 80px; background: #F5F5F5; border-radius: 5px">
+		{% if not loginFlag and not staffFlag %}
+		<div class = "btn-group" style = "position: absolute; top: 40px; left: 4px;">
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 30px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> 下载</button>
+			<button type = "button" title = "登录以启用" disabled = "disabled" class = "btn btn-primary btn-lg dropdown-toggle" data-toggle = "dropdown" style = "position: absolute; margin: 0; border: 0; left: 160px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> 上传 <span class="caret"></span></button>
+  				<ul class="dropdown-menu" style = "position: absolute; margin: 0; border: 0; left: 155px; top: 47px">
+    				<li><a href="#">上传文件</a></li>
+   					<li><a href="#">上传文件夹</a></li>
+  				</ul>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 290px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 删除</button>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 420px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> 复制</button>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 550px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-scissors" aria-hidden="true"></span> 剪切</button>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 680px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> 粘贴</button>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 810px; top: 0px; width: 150px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 新建文件夹</button>
+		</div>
+		{% endif %}
+		{% if loginFlag and not staffFlag %}
+		<div class = "btn-group" style = "position: absolute; top: 40px; left: 4px;">
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 30px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> 下载</button>
+			<button type = "button" class = "btn btn-primary btn-lg dropdown-toggle" data-toggle = "dropdown" style = "position: absolute; margin: 0; border: 0; left: 160px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> 上传 <span class="caret"></span></button>
+  				<ul class="dropdown-menu" style = "position: absolute; margin: 0; border: 0; left: 155px; top: 47px">
+    				<li><a href="#" onclick = "uploadWindow()">上传文件</a></li>
+   					<li><a href="#" title = "暂未启用">上传文件夹</a></li>
+  				</ul>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 290px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 删除</button>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 420px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> 复制</button>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 550px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-scissors" aria-hidden="true"></span> 剪切</button>
+			<button type = "button" title = "登录为管理员以启用" disabled = "disabled" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 680px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> 粘贴</button>
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 810px; top: 0px; width: 150px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 新建文件夹</button>
+		</div> 
+		{% endif %}
+		{% if loginFlag and staffFlag %}
+		<div class = "btn-group" style = "position: absolute; top: 40px; left: 4px;">
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 30px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> 下载</button>
+			<button type = "button" class = "btn btn-primary btn-lg dropdown-toggle" data-toggle = "dropdown" style = "position: absolute; margin: 0; border: 0; left: 160px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> 上传 <span class="caret"></span></button>
+  				<ul class="dropdown-menu" style = "position: absolute; margin: 0; border: 0; left: 155px; top: 47px">
+    				<li><a href="#" onclick = "uploadWindow()">上传文件</a></li>
+   					<li><a href="#" title = "暂未启用">上传文件夹</a></li>
+  				</ul>
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 290px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 删除</button>
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 420px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> 复制</button>
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 550px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-scissors" aria-hidden="true"></span> 剪切</button>
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 680px; top: 0px; width: 105px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> 粘贴</button>
+			<button type = "button" class = "btn btn-primary btn-lg" style = "position: absolute; margin: 0; border: 0; left: 810px; top: 0px; width: 150px; background: #1E90FF; border-radius: 5px"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 新建文件夹</button>
+		</div> 
+		{% endif %}
+		
+		<ol class = "breadcrumb" style = "position: absolute; left: 20px; top: 90px; font-size: 18px">
+  			<li><a href = "#">Home</a></li>
+  			<li><a href = "#">Library</a></li>
+ 			<li class = "active">Data</li>
+		</ol>
+		
+		<div class = "jumbotron" id = "fileUploadJumbo" style = "display: none; position: absolute;width: 500px; height: 300px; left: 250px; top: 100px; background: #FFFFFF; border-radius: 5px">
+			<div style = "position: absolute; left: 0; top: 0;width: 500px; height: 21px; background: #696969; border-radius: 5px">
+				<div style = "position: absolute; left: 6px; color: #FFFFFF; border-radius: 5px">文件上传</div>
+				<button type = "button" class="close" onclick = "uploadCancel()" aria-label = "Close" style = "position: absolute; top: 0; right: 0px; width: 50px; background: #000000; border-radius: 5px"><span aria-hidden = "true" style = "color: #FFFFFF">&times;</span></button>
+			</div>
+			<div>
+				<form action="" method="post" enctype="multipart/form-data" style = "color: #000000">
+        			<a href = "javascript:;" class = "fileSelect">
+        				<input type="file" id = "fileInput" multiple>选择文件
+        			</a>
+        			<input type="submit" class = 'uploadBtn' style = "color: #000000;  width: 105px; height: 40px; background: #87CEEB; border: 1px solid #00BFFF; border-radius: 5px">
+   				</form>
+   			</div>
+		</div>
+		
+		<table class = "table table-bordered table-hover" data-click-to-select = "true" style = "position: absolute; left: 35px; top: 120px; width: 930px; background: #D3D3D3; color: #000000">
+        	<thead>
+           <!-- example
+            	<tr><th>编号</th><th>姓名</th><th>年龄</th></tr> 
+            --> 
+  	    	</thead>
+    	    <tbody>
+    	    <!-- example
+            	<tr><td>001</td><td>郭靖</td><td>25</td></tr>
+     	      	<tr><td>002</td><td>黄蓉</td><td>23</td></tr>
+        	    <tr><td>003</td><td>杨过</td><td>24</td></tr>
+        	-->
+        	</tbody> 
+      	 </table>
+	</div>
+
+</body>
+</html>

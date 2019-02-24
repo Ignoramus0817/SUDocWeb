@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	.navbar-brand:hover{
+	    background-color: #808080 !important;
+	}
+</style>
+<script src = "{% static 'js/general.js' %}"></script>
+<link rel = "stylesheet" href = "{% static '/bootstrap/css/bootstrap.min.css' %}">
+<link rel = "stylesheet" href = "{% static '/bootstrap/css/bootstrap-theme.min.css' %}">
+<meta charset= "UTF-8">
+<title>SUDoc</title>
+</head>
+<body style = "background: #4F4F4F; color: #FFFFFF;">
+
+	<!-- navigating bar -->
+	<nav class = "navbar navbar-default" style = "background: #3C3C3C; margin: 0; border: 0">
+    	<div class = "container">
+    		<div class = "navbar-header">
+        		<div style = "position: absolute; left: 8.5vw"><a class = "navbar-brand" href= "#" id = "nav1" onclick = "mainRegisterClick()" style = "color: #FFFFFF">用户注册</a></div>
+        		<div style = "position: absolute; left: 16vw"><a class = "navbar-brand" href= "#" id = "nav2" onclick = "mainResetClick()" style = "color: #FFFFFF">找回密码</a></div>
+        		<div style = "position: absolute; left: 23.5vw"><a class = "navbar-brand" href= "#" id = "nav3" onclick = "browserClick()" style = "color: #FFFFFF">浏览文件</a></div>
+        		<div style = "position: absolute; top: 2.3vh; right: 8.5vw; color: #D3D3D3;">Powered by Django</div>
+    		</div>
+    	</div>
+	</nav>
+
+	<!-- ornament -->
+	<div style = "position: absolute; top: 130px; left: 198px">
+		<h1 style = "font-size: 350px; font-family: 楷体">管</h1>
+	</div>
+	<div style = "position: absolute; top: 100px; left: 80px">
+		<h1 style = "font-size: 200px; font-family: 楷体">『</h1>
+	</div>
+	<div style = "position: absolute; top: 330px; left: 440px">
+		<h1 style = "font-size: 200px; font-family: 楷体">』</h1>
+	</div>
+	
+	<!-- Login Module -->
+	<div id = "loginModule" style = "display:; position: absolute; width: 450px; height: 460px; top: 135px; right: 180px; background: #FCFCFC; color: #000000; border-radius: 5px">
+		<form action = "" method = "post">
+			<div style = "position: absolute; color: #696969; left: 5.9vw; top: 1.5vh">
+				<h1>Sign in to DocSys</h1>
+			</div>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 2.2vw; top: 13vh;">
+ 				<label for = "userID" style = "font-family: Tahoma; font-size: 16px; color: #808080">UserID</label>
+ 				<input type = "text" class = "form-control" name = "username" id = "userID" placeholder = "学号" aria-describedby = "basic-addon2" style = "height: 60px; border-radius: 5px">
+ 			</div>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 2.2vw; top: 29vh;">
+ 				<label for = "password" style = "font-family: Tahoma; font-size: 16px; color: #808080">Password</label>
+ 				<input type = "password" class = "form-control" name = "password" id = "password" placeholder = "密码" aria-describedby = "basic-addon2" style = "height: 60px; border-radius: 5px">
+ 			</div>
+ 			<div style = "position: absolute; left: 2.2vw; top: 45vh; color: #586069; font-weight: 200">
+ 			如果你只想浏览和下载文件，则不需要登录或注册。
+ 			</div>
+ 			<div style = "position: absolute; left: 2.2vw; top: 49vh">
+ 				<input type = "submit" class = "form-control" aria-describedby = "basic-addon2" value = "Sign in" style = "width: 390px; height: 80px; border-radius: 5px; font-size: 30px; background: #32CD55; color: #FFFFFF">
+ 			</div>
+		</form>
+	</div>
+ 	
+ 	<!-- Register Module -->
+ 	<div id = "registerModule" style = "display: none; position: absolute; width: 450px; height: 520px; top: 90px; right: 180px; background: #FCFCFC; color: #000000; border-radius: 5px">
+ 	 	<form action = "" method = "post">
+ 	 		<div style = "position: absolute; color: #696969; left: 115px; top: 10px">
+				<h3>Register to DocSys</h3>
+			</div>
+			<div>
+			{% if errors %}
+				{% for error in errors %}
+				<li>{{ error }}</li>
+				{% endfor %}
+			{% endif %}
+			</div>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 30px; top: 70px;">
+ 				<label for = "userRegID" style = "font-family: Tahoma; font-size: 10px; color: #808080">UserID</label>
+ 				<input type = "text" class = "form-control" name = "userRegID" id = "userRegID" placeholder = "学号(管理学院)" style = "height: 35px; border-radius: 5px">
+ 			</div>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 30px; top: 140px;">
+ 				<label for = "userRegName" style = "font-family: Tahoma; font-size: 10px; color: #808080">Full Name</label>
+ 				<input type = "text" class = "form-control" name = "userRegName" id = "userRegName" placeholder = "姓名(请使用中文)" style = "height: 35px; border-radius: 5px">
+ 			</div>
+ 			<label for = "userRegEmail" style = "position: absolute; font-family: Tahoma; font-size: 10px; color: #808080; left: 30px; top: 210px;">Email Address</label>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 30px; top: 233px;">
+ 				<input type = "text" class = "form-control" name = "userRegEmail" id = "userRegEmail" placeholder = "邮箱"  style = "height: 35px; border-radius: 5px">
+ 				<span class="input-group-addon" id="basic-addon-email" style = "height: 35px; border-radius: 5px">@mail.ustc.edu.cn</span>
+ 			</div>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 30px; top: 280px;">
+ 				<label for = "userRegPassword" style = "font-family: Tahoma; font-size: 10px; color: #808080">Password</label>
+ 				<input type = "password" class = "form-control" name = "userRegPassword" id = "userRegPassword" placeholder = "密码(6-20位)" style = "height: 35px; border-radius: 5px">
+ 			</div>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 30px; top: 350px;">
+ 				<label for = "userRegConfirmPassword" style = "font-family: Tahoma; font-size: 10px; color: #808080">Confirm Password</label>
+ 				<input type = "password" class = "form-control" name = "userRegConfirmPassword"  id = "userRegConfirmPassword" placeholder = "确认密码" style = "height: 35px; border-radius: 5px">
+ 			</div>
+ 			<div style = "position: absolute; left: 30px; top: 433px">
+ 				<input type = "submit" class = "form-control" value = "Sign up" style = "width: 175px; height: 60px; border-radius: 5px; font-size: 30px; background: #32CD55; color: #FFFFFF">
+ 			</div>
+ 			<div style = "position: absolute; left: 245px; top: 433px">
+ 				<input type = "button" class = "form-control" onclick = "registerCancel()" value = "Cancel" style = "width: 175px; height: 60px; border-radius: 5px; font-size: 30px; background: #32CD55; color: #FFFFFF">
+ 			</div>
+ 		</form>
+ 	</div>
+ 	
+ 	<!-- Reset Module -->
+ 	<div id = "resetModule" style = "display: none; position: absolute; width: 450px; height: 300px; top: 135px; right: 180px; background: #FCFCFC; color: #000000; border-radius: 5px">
+		<form action = "" method = "post">
+			<div style = "position: absolute; color: #696969; left: 53px; top: 1.5vh">
+				<h1>Reset your password</h1>
+			</div>
+ 			<label for = "userResetEmail" style = "position: absolute; font-family: Tahoma; font-size: 16px; color: #808080; left: 30px; top: 90px;">Email Address</label>
+ 			<div class = "input-group" style = "position: absolute; width: 390px; left: 30px; top: 120px;">
+ 				<input type = "text" class = "form-control" name = "userResetEmail" id = "userResetEmail" placeholder = "邮箱"  style = "height: 60px; border-radius: 5px">
+ 				<span class="input-group-addon" id="basic-addon-email" style = "height: 60px; border-radius: 5px">@mail.ustc.edu.cn</span>
+ 			</div>
+ 			<div style = "position: absolute; left: 30px; top: 213px">
+ 				<input type = "submit" class = "form-control" value = "Submit" style = "width: 175px; height: 60px; border-radius: 5px; font-size: 30px; background: #32CD55; color: #FFFFFF">
+ 			</div>
+ 			<div style = "position: absolute; left: 245px; top: 213px">
+ 				<input type = "button" class = "form-control" onclick = "resetCancel()" value = "Cancel" style = "width: 175px; height: 60px; border-radius: 5px; font-size: 30px; background: #32CD55; color: #FFFFFF">
+ 			</div>
+		</form>
+	</div>
+	 
+</body>
+</html>

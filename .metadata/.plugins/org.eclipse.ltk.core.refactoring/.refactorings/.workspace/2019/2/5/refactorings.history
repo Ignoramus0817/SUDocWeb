@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;SUDoc/Static/bootstrap/js/dropdown.js&apos;" deleteContents="false" description="Delete resource &apos;SUDoc/Static/bootstrap/js/dropdown.js&apos;" element1="/SUDoc/Static/bootstrap/js/dropdown.js" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1549000826148"/>
+</session>
